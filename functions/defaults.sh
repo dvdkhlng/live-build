@@ -668,6 +668,19 @@ Set_defaults ()
 			esac
 			;;
 
+		powerpcspe)
+			case "${LB_MODE}" in
+				progress|ubuntu)
+					Echo_error "Architecture ${LB_ARCHITECTURES} not supported in the ${LB_MODE} mode."
+					exit 1
+					;;
+
+				*)
+					LB_LINUX_FLAVOURS="${LB_LINUX_FLAVOURS:-powerpcspe}"
+					;;
+			esac
+			;;
+
 		s390)
 			case "${LB_MODE}" in
 				progress|ubuntu)
@@ -818,6 +831,10 @@ Set_defaults ()
 
 			powerpc)
 				LB_BOOTLOADER="yaboot"
+				;;
+
+			powerpcspe)
+				LB_BOOTLOADER="uboot"
 				;;
 
 			sparc)
